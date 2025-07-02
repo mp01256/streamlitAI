@@ -21,14 +21,6 @@ import sys                       # Lets us talk to the computer system
 from datetime import datetime    # Tells us what time and date it is
 import time                      # Helps us add pauses and delays
 
-# 🔧 Fix a technical problem with databases on some computers
-# (This is like making sure all the puzzle pieces fit together properly)
-try:
-    __import__('pysqlite3')
-    sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
-except ImportError:
-    pass  # If it doesn't work, that's okay - keep going!
-
 # 📄 Import tools for converting documents (turning PDFs into text we can read)
 from docling.document_converter import DocumentConverter, PdfFormatOption
 from docling.backend.docling_parse_v2_backend import DoclingParseV2DocumentBackend
