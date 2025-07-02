@@ -1,3 +1,11 @@
+# Fix SQLite version issue for ChromaDB on Streamlit Cloud
+try:
+    __import__('pysqlite3')
+    import sys
+    sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+except ImportError:
+    pass
+
 # 🎯 WHAT THIS APP DOES:
 # This is a smart app that lets you upload documents (PDF, Word, text files)
 # and then ask questions about them! The AI reads your documents and gives you answers.
