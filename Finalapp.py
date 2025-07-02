@@ -858,23 +858,7 @@ def create_tabbed_interface():
         st.markdown("### ❓ Ask Questions")
         st.markdown("*Get intelligent answers from your uploaded documents with AI-powered search*")
         
-        if st.session_state.collection is not None:
-            # Professional question interface with examples
-            with st.expander("💡 Example questions you can ask", expanded=False):
-                st.markdown("""
-                **📖 Content Analysis:**
-                • "What are the main topics covered in these documents?"
-                • "Summarize the key findings from the research papers"
-                
-                **🔍 Specific Information:**
-                • "What does the document say about [specific topic]?"
-                • "Find statistics or data about [subject]"
-                
-                **📊 Comparative Analysis:**
-                • "Compare information between different documents"
-                • "What are the similarities and differences in approach?"
-                """)
-            
+        if st.session_state.collection is not None:         
             # Enhanced question input
             question = st.text_input(
                 "What would you like to know about your documents?",
