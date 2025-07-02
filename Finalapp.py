@@ -21,6 +21,14 @@ import sys                       # Lets us talk to the computer system
 from datetime import datetime    # Tells us what time and date it is
 import time                      # Helps us add pauses and delays
 
+# 🔧 Fix a technical problem with databases on some computers
+# (This is like making sure all the puzzle pieces fit together properly)
+try:
+    __import__('pysqlite3')
+    sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+except ImportError:
+    pass  # If it doesn't work, that's okay - keep going!
+
 # 📄 Import tools for converting documents (turning PDFs into text we can read)
 from docling.document_converter import DocumentConverter, PdfFormatOption
 from docling.backend.docling_parse_v2_backend import DoclingParseV2DocumentBackend
@@ -555,18 +563,6 @@ def show_document_manager():
                     </p>
                 </div>
                 
-                <div style="
-                    background: rgba(248, 250, 252, 0.8);
-                    border-radius: 8px;
-                    padding: 10px;
-                    margin: 15px 0;
-                    text-align: center;
-                ">
-                    <div style="color: #64748b; font-size: 11px; margin-bottom: 5px;">PROCESSED</div>
-                    <div style="color: #10b981; font-size: 12px; font-weight: 600;">
-                        {datetime.now().strftime("%b %d, %Y")}
-                    </div>
-                </div>
             </div>
             """
             
@@ -617,23 +613,8 @@ def show_document_manager():
                         content = st.session_state.document_contents[filename]
                         preview_text = content[:800] + "..." if len(content) > 800 else content
                         
-                        # Styled preview container
-                        st.markdown(f"""
-                        <div style="
-                            background: rgba(248, 250, 252, 0.8);
-                            border-radius: 8px;
-                            padding: 15px;
-                            font-family: 'Monaco', 'Menlo', monospace;
-                            font-size: 12px;
-                            line-height: 1.5;
-                            color: #374151;
-                            white-space: pre-wrap;
-                            max-height: 300px;
-                            overflow-y: auto;
-                        ">
-{preview_text}
-                        </div>
-                        """, unsafe_allow_html=True)
+                        # Styled preview container - using code block to avoid HTML conflicts
+                        st.code(preview_text, language="text")
                     else:
                         st.info("Preview not available - document content not stored in session.")
             
@@ -858,7 +839,7 @@ def create_tabbed_interface():
         st.markdown("### ❓ Ask Questions")
         st.markdown("*Get intelligent answers from your uploaded documents with AI-powered search*")
         
-        if st.session_state.collection is not None:         
+        if st.session_state.collection is not None:            
             # Enhanced question input
             question = st.text_input(
                 "What would you like to know about your documents?",
