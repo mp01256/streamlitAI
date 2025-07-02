@@ -11,4 +11,4 @@ pysqlite3-binary
 torch
 numpy
 requests
-
+psutil
