@@ -1013,7 +1013,7 @@ def main():
     """
     # 🎯 Set up the basic settings for our web app
     st.set_page_config(
-        page_title="DocuLens",  # What shows in the browser tab
+        page_title="DocLens",  # What shows in the browser tab
         page_icon="📚",                   # The little icon in the browser tab
         layout="centered"                 # Put everything in the center (looks nice!)
     )
@@ -1353,7 +1353,7 @@ def main():
     st.markdown("""
     <div style="text-align: center; margin: 30px 0; padding: 20px 0;">
         <h1 style="
-        ">📚 DocuLens</h1>
+        ">📚 DocLens</h1>
 
                         
         🌟 Transform your documents into an intelligent Q&A system with AI-powered insights ✨
@@ -1362,7 +1362,7 @@ def main():
 
     # 🚀 Show startup loading animation
     if 'app_initialized' not in st.session_state:
-        show_loading_animation("🏠 Setting up DocuLens...")
+        show_loading_animation("🏠 Setting up DocLens...")
         st.session_state.app_initialized = True
 
     # Initialize session state
